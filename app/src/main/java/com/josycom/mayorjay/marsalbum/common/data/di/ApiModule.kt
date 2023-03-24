@@ -1,6 +1,9 @@
-package com.josycom.mayorjay.marsalbum.common.di
+package com.josycom.mayorjay.marsalbum.common.data.di
 
 import com.josycom.mayorjay.marsalbum.BuildConfig
+import com.josycom.mayorjay.marsalbum.common.data.api.ApiConstants
+import com.josycom.mayorjay.marsalbum.common.data.api.MarsAlbumApi
+import com.josycom.mayorjay.marsalbum.common.data.api.interceptor.NetworkStatusInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -16,7 +19,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object NetworkModule {
+object ApiModule {
 
     @Provides
     fun provideBaseUrl() = BuildConfig.BASE_URL
@@ -42,22 +45,30 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideClient(networkStatusInterceptor: NetworkStatusInterceptor,
+                      loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(networkStatusInterceptor)
             .addInterceptor(loggingInterceptor)
-//            .connectTimeout(ApiConstants.DURATION, TimeUnit.MILLISECONDS)
-//            .readTimeout(ApiConstants.DURATION, TimeUnit.MILLISECONDS)
-//            .writeTimeout(ApiConstants.DURATION, TimeUnit.MILLISECONDS)
+            .connectTimeout(ApiConstants.DURATION, TimeUnit.SECONDS)
+            .readTimeout(ApiConstants.DURATION, TimeUnit.SECONDS)
+            .writeTimeout(ApiConstants.DURATION, TimeUnit.SECONDS)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String, moshi: Moshi, client: OkHttpClient): Retrofit {
+    fun provideRetrofit(baseUrl: String,
+                        moshi: Moshi,
+                        client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideApiService(retrofit: Retrofit): MarsAlbumApi = retrofit.create(MarsAlbumApi::class.java)
 }
