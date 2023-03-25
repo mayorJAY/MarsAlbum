@@ -3,7 +3,12 @@ package com.josycom.mayorjay.marsalbum.common.data.api
 import com.josycom.mayorjay.marsalbum.common.data.api.datasource.ManifestDataSource
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoManifestRemoteMapper
 import com.josycom.mayorjay.marsalbum.common.domain.model.Manifest
+import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.repositories.ManifestRepository
+import com.josycom.mayorjay.marsalbum.common.util.Resource
+import retrofit2.HttpException
+import timber.log.Timber
+import java.io.IOException
 import javax.inject.Inject
 
 class ManifestRepositoryImpl @Inject constructor(
@@ -11,8 +16,21 @@ class ManifestRepositoryImpl @Inject constructor(
     private val manifestMapper: PhotoManifestRemoteMapper
     ): ManifestRepository {
 
-    override suspend fun getRoverManifest(roverName: String): Manifest {
-        val manifestResponse = dataSource.getRoverManifest(roverName)
-        return Manifest(manifestMapper.mapToDomain(manifestResponse.photoManifest))
+    override suspend fun getRoverManifest(roverName: String): Resource<Manifest> {
+        return try {
+            val manifestResponse = dataSource.getRoverManifest(roverName)
+            val photoManifest = manifestMapper.mapToDomain(manifestResponse.photoManifest)
+            if (photoManifest.maxSol != -1) {
+                Resource.Success(Manifest(photoManifest))
+            } else {
+                Resource.Error(NetworkException("Manifest not found"))
+            }
+        } catch (exception: IOException) {
+            Timber.e(exception)
+            Resource.Error(exception)
+        } catch (exception: HttpException) {
+            Timber.e(exception)
+            Resource.Error(NetworkException(exception.message ?: "Code ${exception.code()}"))
+        }
     }
 }

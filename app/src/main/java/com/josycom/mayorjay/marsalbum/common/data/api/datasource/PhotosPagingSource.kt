@@ -4,9 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.josycom.mayorjay.marsalbum.common.data.api.MarsAlbumApi
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoRemoteMapper
-import com.josycom.mayorjay.marsalbum.common.domain.model.NetworkException
+import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.model.Photo
 import retrofit2.HttpException
+import timber.log.Timber
 import java.io.IOException
 
 class PhotosPagingSource (
@@ -38,8 +39,10 @@ class PhotosPagingSource (
                 nextKey = nextKey
             )
         } catch (exception: IOException) {
+            Timber.e(exception)
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
+            Timber.e(exception)
             LoadResult.Error(NetworkException(exception.message ?: "Code ${exception.code()}"))
         }
     }
