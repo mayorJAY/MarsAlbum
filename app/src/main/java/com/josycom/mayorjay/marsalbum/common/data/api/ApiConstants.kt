@@ -9,4 +9,6 @@ object ApiConstants {
   const val API_KEY = "api_key"
   const val PAGE = "page"
   const val SOL = "sol"
+  const val FIRST_PAGE = 1
+  const val PAGE_SIZE = 20
 }
