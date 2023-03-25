@@ -5,34 +5,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photo_card"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardElevation="@dimen/_2sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/mars_photo" />
+    </androidx.cardview.widget.CardView>
+
     <TextView
-        android:id="@+id/tv_image"
+        android:id="@+id/tv_rover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Image Src"/>
+        app:layout_constraintTop_toBottomOf="@id/photo_card"
+        tools:text="Rover: Curiosity" />
 
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_image"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintTop_toBottomOf="@id/tv_rover"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Date Taken"/>
+        tools:text="Date Taken: 22nd March 2023"/>
 
     <TextView
-        android:id="@+id/tv_sol"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_camera"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Image Sol"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        tools:text="Camera Used: FSAH" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#dadada"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="@dimen/_2sdp"
+        android:background="@color/line_color"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_camera"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

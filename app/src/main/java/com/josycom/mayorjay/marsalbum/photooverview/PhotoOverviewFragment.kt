@@ -86,6 +86,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
                 is Resource.Loading -> {
                     binding.tvStatus.isVisible = false
                     binding.ivStatus.isVisible = data.data.isEmptyOrNull()
+                    binding.rvPhotos.isVisible = false
                     binding.ivStatus.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.loading_animation, null))
                 }
 
@@ -119,6 +120,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
                 val loadState = it.source.refresh
                 if (loadState is LoadState.Loading) {
                     binding.tvStatus.isVisible = false
+                    binding.rvPhotos.isVisible = false
                     binding.ivStatus.isVisible = true
                     binding.ivStatus.setImageDrawable(
                         ResourcesCompat.getDrawable(
@@ -145,6 +147,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
                 if (loadState !is LoadState.Loading && loadState !is LoadState.Error) {
                     binding.ivStatus.isVisible = false
                     binding.tvStatus.isVisible = false
+                    binding.rvPhotos.isVisible = true
                     if (photoAdapter.itemCount <= 0) {
                         binding.tvStatus.isVisible = true
                         binding.tvStatus.text = getString(R.string.no_photo_message)

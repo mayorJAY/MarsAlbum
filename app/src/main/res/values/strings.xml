@@ -9,4 +9,8 @@
     <string name="please_select_a_preferred_sol_from_the_list_below">Please select a preferred SOL from the list below</string>
     <string name="proceed">Proceed</string>
     <string name="filter">Filter</string>
+    <string name="rover">Rover: %s</string>
+    <string name="date_taken">Date Taken: %s</string>
+    <string name="camera_used">Camera Used: %s (%s)</string>
+    <string name="mars_photo">Mars Photo</string>
 </resources>
