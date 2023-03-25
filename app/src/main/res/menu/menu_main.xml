@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".photooverview.PhotoOverviewFragment">
+
+    <item
+        android:id="@+id/action_filter"
+        android:title="@string/filter"
+        android:icon="@drawable/ic_action_filter"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/action_filter_perseverance"
+                android:title="@string/perseverance_rover"
+                android:orderInCategory="10"
+                app:showAsAction="never"/>
+
+            <item
+                android:id="@+id/action_filter_curiosity"
+                android:title="@string/curiosity_rover"
+                android:orderInCategory="20"
+                app:showAsAction="never"/>
+
+            <item
+                android:id="@+id/action_filter_opportunity"
+                android:title="@string/opportunity_rover"
+                android:orderInCategory="30"
+                app:showAsAction="never"/>
+
+            <item
+                android:id="@+id/action_filter_spirit"
+                android:title="@string/spirit_rover"
+                android:orderInCategory="40"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+</menu>
