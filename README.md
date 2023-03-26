@@ -4,7 +4,7 @@
 
 # MarsAlbum
 
-MarsAlbum is an Android Application that fetches and displays image data gathered by NASA's Curiosity, Perseverance, Opportunity, and Spirit rovers on Mars. The App fetches the data from [NASA API](https://api.nasa.gov/). Each rover has its own set of photos and are being queried separately. The App has a Splash Screen, a Home page showing a list of images (and data) captured by a rover on a particular day. A user can filter for images captured by any rover on any particular Mars Sol. When an image is selected, more details about the image and rover are displayed on a details page. It is implemented using Clean Architecture, Model-View-ViewModel (MVVM) pattern and uses Modern Android Development pattern and libraries. Adequate Unit Tests were also implemented in the codebase.
+MarsAlbum is an Android Application that fetches and displays image data gathered by NASA's Curiosity, Perseverance, Opportunity and Spirit rovers on Mars. The App fetches the data from [NASA API](https://api.nasa.gov/). Each rover has its own set of photos and are being queried separately. The App has a Splash Screen, a Home page showing a list of images (and data) captured by a rover on a particular day. A user can filter for images captured by any rover on any particular Mars Sol. When an image is selected, more details about the image and rover are displayed on a details page. It is implemented using Clean Architecture, Model-View-ViewModel (MVVM) pattern and uses Modern Android Development pattern and libraries. Adequate Unit Tests were also implemented in the codebase.
 
 Get the sample [APK here](https://github.com/mayorJAY/MarsAlbum/blob/main/media/MarsAlbum.apk)
 
@@ -47,7 +47,7 @@ Minimum API level is set to 21, this means HolidayInfo can run on approximately 
 
 ## Installation
 
-You will need an API key from [NASA API](https://api.nasa.gov/). In your project's root directory, inside the `local.properties` file, include the following line:
+You will need an API key from [NASA API](https://api.nasa.gov/), although the API provides a demo API key. In your project's root directory, inside the `local.properties` file, include the following line:
 
 ````
 api.key=YOUR_API_KEY
