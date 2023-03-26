@@ -1,13 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".photodetails.PhotoDetailsFragment">
 
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintGuide_percent="0.03"/>
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.97"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photo_card"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardElevation="@dimen/_2sdp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/mars_photo" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_rover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintTop_toBottomOf="@id/photo_card"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        tools:text="Rover Name: Spirit"/>
+
+    <TextView
+        android:id="@+id/tv_rover_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_rover"
+        tools:text="Rover ID: 12334"/>
+
+    <TextView
+        android:id="@+id/tv_launch_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_rover_id"
+        tools:text="Launch Date: 22nd March 2023"/>
+
+    <TextView
+        android:id="@+id/tv_land_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_launch_date"
+        tools:text="Land Date: 22nd March 2023"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_land_date"
+        tools:text="Status: Active"/>
+
+    <TextView
+        android:id="@+id/tv_photo_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_status"
+        tools:text="Photo ID: 8909"/>
+
+    <TextView
+        android:id="@+id/tv_photo_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_photo_id"
+        tools:text="Date Captured: 22nd March 2023"/>
+
+    <TextView
+        android:id="@+id/tv_camera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/tv_photo_date"
+        tools:text="Camera Used: FSAH"/>
+
+    <TextView
+        android:id="@+id/tv_camera_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/tv_camera"
+        tools:text="Camera ID: 34345"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

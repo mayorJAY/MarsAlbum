@@ -11,7 +11,7 @@ import com.josycom.mayorjay.marsalbum.common.domain.model.PhotoManifest
 import com.josycom.mayorjay.marsalbum.common.domain.repositories.ManifestRepository
 import com.josycom.mayorjay.marsalbum.common.domain.repositories.PhotosRepository
 import com.josycom.mayorjay.marsalbum.common.util.Resource
-import com.josycom.mayorjay.marsalbum.common.util.Rover
+import com.josycom.mayorjay.marsalbum.common.presentation.Rover
 import com.josycom.mayorjay.marsalbum.common.util.isEmptyOrNull
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -49,6 +49,11 @@ class PhotoOverviewViewModel @Inject constructor(
     private var spiritManifest: PhotoManifest
         get() = _spiritManifest
         set(value) { _spiritManifest = value }
+
+    private var _roverSelected: String? = null
+    var roverSelected: String?
+        get() = _roverSelected
+        set(value) { _roverSelected = value }
 
     private var _solSelected: String? = null
     var solSelected: String?
@@ -113,6 +118,7 @@ class PhotoOverviewViewModel @Inject constructor(
     }
 
     fun getManifestByRoverName(roverName: String): PhotoManifest {
+        roverSelected = roverName
         return when (roverName.uppercase()) {
             Rover.PERSEVERANCE.name -> { perseveranceManifest }
             Rover.CURIOSITY.name -> { curiosityManifest }

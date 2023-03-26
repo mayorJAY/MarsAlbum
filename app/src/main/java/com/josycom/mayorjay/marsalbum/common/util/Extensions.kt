@@ -1,9 +1,18 @@
 package com.josycom.mayorjay.marsalbum.common.util
 
+import android.graphics.Typeface
+import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.josycom.mayorjay.marsalbum.R
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -26,6 +35,15 @@ fun ImageView.displayImage(imageUrl: String) {
         .into(this)
 }
 
+fun TextView.setSpannedText(text: String) {
+    val index = text.indexOf(':')
+    if (index > 0) {
+        val sb = SpannableStringBuilder(text)
+        sb.setSpan(StyleSpan(Typeface.BOLD), 0, index, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        this.text = SpannableString(sb)
+    }
+}
+
 fun String.getFormattedDate(): String {
     val fromFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     val toFormat = SimpleDateFormat("MMM dd yyyy", Locale.getDefault())
@@ -34,5 +52,14 @@ fun String.getFormattedDate(): String {
     } catch (e: ParseException) {
         Timber.e(e)
         this
+    }
+}
+
+fun Fragment.switchFragment(destination: Fragment, bundle: Bundle?, addToBackStack: Boolean) {
+    this.parentFragmentManager.beginTransaction().apply {
+        bundle?.let { destination.arguments = it }
+        if (addToBackStack) addToBackStack(null)
+        replace(R.id.main_fragment, destination)
+        commit()
     }
 }

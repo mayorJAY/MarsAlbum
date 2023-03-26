@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.MenuHost
@@ -27,10 +26,13 @@ import com.josycom.mayorjay.marsalbum.R
 import com.josycom.mayorjay.marsalbum.common.domain.model.Manifest
 import com.josycom.mayorjay.marsalbum.common.domain.model.Photo
 import com.josycom.mayorjay.marsalbum.common.util.Resource
-import com.josycom.mayorjay.marsalbum.common.util.Rover
+import com.josycom.mayorjay.marsalbum.common.presentation.Rover
+import com.josycom.mayorjay.marsalbum.common.util.Constants
 import com.josycom.mayorjay.marsalbum.common.util.isEmptyOrNull
+import com.josycom.mayorjay.marsalbum.common.util.switchFragment
 import com.josycom.mayorjay.marsalbum.databinding.FragmentPhotoOverviewBinding
 import com.josycom.mayorjay.marsalbum.databinding.SolListViewBinding
+import com.josycom.mayorjay.marsalbum.photodetails.PhotoDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -56,7 +58,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         setupRv()
-        fetchManifest(Rover.CURIOSITY.name.lowercase())
+        fetchManifest()
         observeManifestLiveData()
         setupListener()
     }
@@ -75,7 +77,8 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
         }
     }
 
-    private fun fetchManifest(roverName: String) {
+    private fun fetchManifest() {
+        val roverName = viewModel.roverSelected ?: Rover.CURIOSITY.name.lowercase()
         viewModel.fetchManifest(roverName)
     }
 
@@ -95,7 +98,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
                     binding.ivStatus.isVisible = false
                     val manifest = data.data ?: Manifest()
                     viewModel.saveManifest(manifest)
-                    fetchAndObservePhotos(manifest.photoManifest.name, manifest.photoManifest.maxSol)
+                    fetchAndObservePhotos(manifest.photoManifest.name, viewModel.solSelected?.toInt() ?: manifest.photoManifest.maxSol)
                 }
 
                 is Resource.Error -> {
@@ -232,6 +235,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
     }
 
     private fun onPhotoSelected(photo: Photo) {
-        Toast.makeText(requireContext(), photo.id.toString(), Toast.LENGTH_SHORT).show()
+        val arg = Bundle().apply { putSerializable(Constants.PHOTO_KEY, photo) }
+        switchFragment(PhotoDetailsFragment(), arg, true)
     }
 }
