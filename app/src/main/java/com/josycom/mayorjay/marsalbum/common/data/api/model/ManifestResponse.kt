@@ -7,7 +7,7 @@ data class ManifestResponse(@Json(name = "photo_manifest")
 
 data class PhotoManifestRemote(
     @Json(name = "max_sol")
-    val maxSol: Int?,
-    val name: String?,
-    val status: String?
+    val maxSol: Int? = null,
+    val name: String? = null,
+    val status: String? = null
 )

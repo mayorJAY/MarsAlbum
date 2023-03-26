@@ -103,7 +103,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
 
                 is Resource.Error -> {
                     binding.tvStatus.isVisible = data.data.isEmptyOrNull()
-                    binding.tvStatus.text = getString(R.string.network_error_message)
+                    binding.tvStatus.text = getString(R.string.network_error_message, data.error?.message)
                     binding.ivStatus.isVisible = data.data.isEmptyOrNull()
                     binding.ivStatus.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_connection_error, null))
                 }

@@ -6,6 +6,7 @@ import com.josycom.mayorjay.marsalbum.common.data.api.service.MarsAlbumApi
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoRemoteMapper
 import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.model.Photo
+import com.josycom.mayorjay.marsalbum.common.util.isEmptyOrNull
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -43,7 +44,10 @@ class PhotosPagingSource (
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
             Timber.e(exception)
-            LoadResult.Error(NetworkException(exception.message ?: "Code ${exception.code()}"))
+            if (exception.code() == 403)
+                LoadResult.Error(NetworkException("Invalid API Key supplied. Get one at https://api.nasa.gov"))
+            else
+                LoadResult.Error(NetworkException( if (exception.message.isEmptyOrNull()) "Code ${exception.code()}" else exception.message()))
         }
     }
 }

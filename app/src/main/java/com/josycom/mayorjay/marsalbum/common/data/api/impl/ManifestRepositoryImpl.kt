@@ -6,6 +6,7 @@ import com.josycom.mayorjay.marsalbum.common.domain.model.Manifest
 import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.repositories.ManifestRepository
 import com.josycom.mayorjay.marsalbum.common.util.Resource
+import com.josycom.mayorjay.marsalbum.common.util.isEmptyOrNull
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -30,7 +31,10 @@ class ManifestRepositoryImpl @Inject constructor(
             Resource.Error(exception)
         } catch (exception: HttpException) {
             Timber.e(exception)
-            Resource.Error(NetworkException(exception.message ?: "Code ${exception.code()}"))
+            if (exception.code() == 403)
+                Resource.Error(NetworkException("Invalid API Key supplied. Get one at https://api.nasa.gov"))
+            else
+            Resource.Error(NetworkException( if (exception.message.isEmptyOrNull()) "Code ${exception.code()}" else exception.message()))
         }
     }
 }
