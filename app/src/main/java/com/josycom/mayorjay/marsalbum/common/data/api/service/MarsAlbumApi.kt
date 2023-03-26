@@ -1,6 +1,7 @@
-package com.josycom.mayorjay.marsalbum.common.data.api
+package com.josycom.mayorjay.marsalbum.common.data.api.service
 
 import com.josycom.mayorjay.marsalbum.BuildConfig
+import com.josycom.mayorjay.marsalbum.common.data.api.util.ApiConstants
 import com.josycom.mayorjay.marsalbum.common.data.api.model.ManifestResponse
 import com.josycom.mayorjay.marsalbum.common.data.api.model.PhotoResponse
 import retrofit2.http.GET

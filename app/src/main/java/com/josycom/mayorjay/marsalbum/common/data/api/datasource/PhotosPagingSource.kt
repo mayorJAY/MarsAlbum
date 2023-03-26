@@ -2,7 +2,7 @@ package com.josycom.mayorjay.marsalbum.common.data.api.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.josycom.mayorjay.marsalbum.common.data.api.MarsAlbumApi
+import com.josycom.mayorjay.marsalbum.common.data.api.service.MarsAlbumApi
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoRemoteMapper
 import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.model.Photo

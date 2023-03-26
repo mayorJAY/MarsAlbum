@@ -1,4 +1,4 @@
-package com.josycom.mayorjay.marsalbum.common.data.api
+package com.josycom.mayorjay.marsalbum.common.data.api.util
 
 import android.content.Context
 import android.net.ConnectivityManager

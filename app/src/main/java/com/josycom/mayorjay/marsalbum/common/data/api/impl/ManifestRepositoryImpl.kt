@@ -1,4 +1,4 @@
-package com.josycom.mayorjay.marsalbum.common.data.api
+package com.josycom.mayorjay.marsalbum.common.data.api.impl
 
 import com.josycom.mayorjay.marsalbum.common.data.api.datasource.ManifestDataSource
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoManifestRemoteMapper

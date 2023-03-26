@@ -1,8 +1,8 @@
 package com.josycom.mayorjay.marsalbum.common.data.di
 
 import com.josycom.mayorjay.marsalbum.BuildConfig
-import com.josycom.mayorjay.marsalbum.common.data.api.ApiConstants
-import com.josycom.mayorjay.marsalbum.common.data.api.MarsAlbumApi
+import com.josycom.mayorjay.marsalbum.common.data.api.util.ApiConstants
+import com.josycom.mayorjay.marsalbum.common.data.api.service.MarsAlbumApi
 import com.josycom.mayorjay.marsalbum.common.data.api.interceptor.NetworkStatusInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

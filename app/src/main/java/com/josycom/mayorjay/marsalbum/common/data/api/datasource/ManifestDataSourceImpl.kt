@@ -1,6 +1,6 @@
 package com.josycom.mayorjay.marsalbum.common.data.api.datasource
 
-import com.josycom.mayorjay.marsalbum.common.data.api.MarsAlbumApi
+import com.josycom.mayorjay.marsalbum.common.data.api.service.MarsAlbumApi
 import com.josycom.mayorjay.marsalbum.common.data.api.model.ManifestResponse
 import javax.inject.Inject
 
