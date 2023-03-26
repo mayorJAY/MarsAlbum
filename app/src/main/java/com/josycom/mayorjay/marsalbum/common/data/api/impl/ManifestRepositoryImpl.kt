@@ -3,7 +3,7 @@ package com.josycom.mayorjay.marsalbum.common.data.api.impl
 import com.josycom.mayorjay.marsalbum.common.data.api.datasource.ManifestDataSource
 import com.josycom.mayorjay.marsalbum.common.data.api.model.mappers.PhotoManifestRemoteMapper
 import com.josycom.mayorjay.marsalbum.common.domain.model.Manifest
-import com.josycom.mayorjay.marsalbum.common.domain.NetworkException
+import com.josycom.mayorjay.marsalbum.common.domain.util.NetworkException
 import com.josycom.mayorjay.marsalbum.common.domain.repositories.ManifestRepository
 import com.josycom.mayorjay.marsalbum.common.util.Resource
 import com.josycom.mayorjay.marsalbum.common.util.isEmptyOrNull

@@ -1,4 +1,4 @@
-package com.josycom.mayorjay.marsalbum.common.domain
+package com.josycom.mayorjay.marsalbum.common.domain.util
 
 import java.io.IOException
 

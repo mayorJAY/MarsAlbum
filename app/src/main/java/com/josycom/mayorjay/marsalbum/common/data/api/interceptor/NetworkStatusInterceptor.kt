@@ -1,7 +1,7 @@
 package com.josycom.mayorjay.marsalbum.common.data.api.interceptor
 
 import com.josycom.mayorjay.marsalbum.common.data.api.util.ConnectionManager
-import com.josycom.mayorjay.marsalbum.common.domain.NetworkUnavailableException
+import com.josycom.mayorjay.marsalbum.common.domain.util.NetworkUnavailableException
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
