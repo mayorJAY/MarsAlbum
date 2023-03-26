@@ -46,7 +46,7 @@ class PhotoOverviewViewModel @Inject constructor(
         set(value) { _opportunityManifest = value }
 
     private var _spiritManifest: PhotoManifest = PhotoManifest()
-    private var spiritManifest: PhotoManifest
+    var spiritManifest: PhotoManifest
         get() = _spiritManifest
         set(value) { _spiritManifest = value }
 
@@ -64,7 +64,7 @@ class PhotoOverviewViewModel @Inject constructor(
     fun getPhotosPagingFlow(): Flow<PagingData<Photo>> = photosPagingFlow
     private fun setPhotosPagingFlow(photosPagingFlow: Flow<PagingData<Photo>>) { this.photosPagingFlow = photosPagingFlow }
 
-    init {
+    fun init() {
         initialLoad()
     }
 

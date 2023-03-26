@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PhotosRepository @Inject constructor(
+open class PhotosRepository @Inject constructor(
     private val apiService: MarsAlbumApi,
     private val photoMapper: PhotoRemoteMapper
 ) {

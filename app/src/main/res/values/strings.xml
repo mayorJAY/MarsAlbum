@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">MarsAlbum</string>
     <string name="network_error_message">%s. \nTap on the image below to retry</string>
-    <string name="no_photo_message">Oops! No photo was captured on the selected SOL</string>
+    <string name="no_photo_message">Oops! No photo was captured on the selected Mars Sol (day)</string>
     <string name="curiosity_rover">Curiosity Rover</string>
     <string name="perseverance_rover">Perseverance Rover</string>
     <string name="opportunity_rover">Opportunity Rover</string>
     <string name="spirit_rover">Spirit Rover</string>
-    <string name="please_select_a_preferred_sol_from_the_list_below">Please select a preferred SOL from the list below</string>
+    <string name="please_select_a_preferred_sol_from_the_list_below">Please select a preferred Mars Sol (day) from the list below</string>
     <string name="proceed">Proceed</string>
     <string name="filter">Filter</string>
     <string name="rover">Rover Name: %s</string>

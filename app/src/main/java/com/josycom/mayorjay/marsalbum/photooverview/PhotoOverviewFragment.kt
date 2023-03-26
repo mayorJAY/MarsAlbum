@@ -57,11 +57,14 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
         setupRv()
         fetchManifest()
         observeManifestLiveData()
         setupListener()
     }
+
+    private fun init() = viewModel.init()
 
     private fun setupRv() {
         binding.rvPhotos.apply {
