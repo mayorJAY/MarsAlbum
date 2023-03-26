@@ -9,8 +9,8 @@ class PhotoManifestRemoteMapper @Inject constructor() : ApiMapper<PhotoManifestR
     override fun mapToDomain(apiEntity: PhotoManifestRemote?): PhotoManifest {
         return PhotoManifest(
             maxSol = apiEntity?.maxSol ?: -1,
-            name = apiEntity?.name.orEmpty(),
-            status = apiEntity?.status.orEmpty()
+            name = apiEntity?.name.orEmpty().trim(),
+            status = apiEntity?.status.orEmpty().trim()
         )
     }
 }

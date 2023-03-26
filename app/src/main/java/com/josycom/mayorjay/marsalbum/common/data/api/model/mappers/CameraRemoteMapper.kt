@@ -8,9 +8,9 @@ class CameraRemoteMapper @Inject constructor() : ApiMapper<CameraRemote?, Camera
 
     override fun mapToDomain(apiEntity: CameraRemote?): Camera {
         return Camera(
-            fullName = apiEntity?.fullName.orEmpty(),
+            fullName = apiEntity?.fullName.orEmpty().trim(),
             id = apiEntity?.id ?: -1,
-            name = apiEntity?.name.orEmpty(),
+            name = apiEntity?.name.orEmpty().trim(),
             roverId = apiEntity?.roverId ?: -1
         )
     }

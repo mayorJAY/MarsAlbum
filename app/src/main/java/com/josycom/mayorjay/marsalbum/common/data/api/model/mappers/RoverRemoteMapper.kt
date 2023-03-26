@@ -9,10 +9,10 @@ class RoverRemoteMapper @Inject constructor() : ApiMapper<RoverRemote?, Rover> {
     override fun mapToDomain(apiEntity: RoverRemote?): Rover {
         return Rover(
             id = apiEntity?.id ?: -1,
-            landingDate = apiEntity?.landingDate.orEmpty(),
-            launchDate = apiEntity?.launchDate.orEmpty(),
-            name = apiEntity?.name.orEmpty(),
-            status = apiEntity?.status.orEmpty()
+            landingDate = apiEntity?.landingDate.orEmpty().trim(),
+            launchDate = apiEntity?.launchDate.orEmpty().trim(),
+            name = apiEntity?.name.orEmpty().trim(),
+            status = apiEntity?.status.orEmpty().trim()
         )
     }
 }

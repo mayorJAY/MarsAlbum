@@ -12,9 +12,9 @@ class PhotoRemoteMapper @Inject constructor(
     override fun mapToDomain(apiEntity: PhotoRemote): Photo {
         return Photo(
             camera = cameraMapper.mapToDomain(apiEntity.camera),
-            earthDate = apiEntity.earthDate.orEmpty(),
+            earthDate = apiEntity.earthDate.orEmpty().trim(),
             id = apiEntity.id ?: -1,
-            imgSrc = apiEntity.imgSrc.orEmpty(),
+            imgSrc = apiEntity.imgSrc.orEmpty().trim(),
             rover = roverMapper.mapToDomain(apiEntity.rover),
             sol = apiEntity.sol ?: -1
         )
