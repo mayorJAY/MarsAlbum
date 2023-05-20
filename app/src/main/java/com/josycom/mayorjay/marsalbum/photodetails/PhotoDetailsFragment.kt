@@ -18,14 +18,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PhotoDetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentPhotoDetailsBinding
+    private var _binding: FragmentPhotoDetailsBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: PhotoDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPhotoDetailsBinding.inflate(layoutInflater)
+        _binding = FragmentPhotoDetailsBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -60,5 +61,10 @@ class PhotoDetailsFragment : Fragment() {
                 tvCameraId.setSpannedText(getString(R.string.camera_id, camera.id))
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

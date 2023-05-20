@@ -40,7 +40,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class PhotoOverviewFragment : Fragment(), MenuProvider {
 
-    private lateinit var binding: FragmentPhotoOverviewBinding
+    private var _binding: FragmentPhotoOverviewBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: PhotoOverviewViewModel by viewModels()
     private val photoAdapter: PhotoPagingAdapter by lazy { PhotoPagingAdapter { onPhotoSelected(it) } }
 
@@ -48,7 +49,7 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPhotoOverviewBinding.inflate(layoutInflater)
+        _binding = FragmentPhotoOverviewBinding.inflate(layoutInflater)
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         return binding.root
@@ -240,5 +241,10 @@ class PhotoOverviewFragment : Fragment(), MenuProvider {
     private fun onPhotoSelected(photo: Photo) {
         val arg = Bundle().apply { putSerializable(Constants.PHOTO_KEY, photo) }
         switchFragment(PhotoDetailsFragment(), arg, true)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
